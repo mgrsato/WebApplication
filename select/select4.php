@@ -1,5 +1,5 @@
 ﻿<HTML>
-<HEAD> 
+<HEAD>
 	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<TITLE>SELECT | INSERT | UPDATE | DELETE</TITLE>
 	<STYLE TYPE="text/css">
