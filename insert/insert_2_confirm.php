@@ -81,16 +81,17 @@
     	}
 
 	//フォームに入力された文字列を使って追加
-	//$sql = 'SELECT * FROM user where id = "'.$search_keyword.'"';
-	//$sql = 'UPDATE user SET email='.$email.', password='.$password.', last_login='.$last_login.', name='.$name.', gender='.$gender.', birthday='.$birthday.', age='.$age.', postal_code='.$postal_code.', prefecture='.$prefecture.', phone='.$phone.', is_deleted='.$is_deleted.' WHERE id='.$id.';';
-	//$sql = 'UPDATE user SET email="'.$email.'", password="'.$password.'", last_login="'.$last_login.'", name="'.$name.'", gender="'.$gender.'", birthday="'.$birthday.'", age="'.$age.'", postal_code="'.$postal_code.'", prefecture="'.$prefecture.'", phone="'.$phone.'", is_deleted="'.$is_deleted.'" WHERE id="'.$id.'";';
 	$sql = 'INSERT INTO user (email, password, last_login, name, gender, birthday, age, postal_code, prefecture, phone, is_deleted) VALUES ("'.$email.'", "'.$password.'", "'.$last_login.'", "'.$name.'", "'.$gender.'", "'.$birthday.'", "'.$age.'", "'.$postal_code.'", "'.$prefecture.'", "'.$phone.'", "'.$is_deleted.'");';
 
 	$stmt = $dbh->query($sql);
-        $dbh = null;
 
 	print("追加が完了しました");
 	print("<p>");
+
+	//追加されたデータの表示
+	$sql = 'SELECT * FROM user where id > 100000';
+	$stmt = $dbh->query($sql);
+        $dbh = null;
 
 	print("<table>");
 
@@ -109,20 +110,23 @@
 	print("<th>is_deleted</th>");
 	print("</tr>");
 
-        print("<tr>");
-	print("<td>".$id."</td>");
-	print("<td>".$email."</td>");
-	print("<td>".$password."</td>");
-	print("<td>".$last_login."</td>");
-	print("<td>".$name."</td>");
-	print("<td>".$gender."</td>");
-	print("<td>".$birthday."</td>");
-	print("<td>".$age."</td>");
-	print("<td>".$postal_code."</td>");
-	print("<td>".$prefecture."</td>");
-	print("<td>".$phone."</td>");
-	print("<td>".$is_deleted."</td>");
-	print("</tr>");
+	//検索結果が複数なので（１行ではないので），データの出力をループで繰り返す
+	foreach ($stmt as $row) {
+		print("<tr>");
+		print("<td>".$row['id']."</td>");
+		print("<td>".$row['email']."</td>");
+		print("<td>".$row['password']."</td>");
+		print("<td>".$row['last_login']."</td>");
+		print("<td>".$row['name']."</td>");
+		print("<td>".$row['gender']."</td>");
+		print("<td>".$row['birthday']."</td>");
+		print("<td>".$row['age']."</td>");
+		print("<td>".$row['postal_code']."</td>");
+		print("<td>".$row['prefecture']."</td>");
+		print("<td>".$row['phone']."</td>");
+		print("<td>".$is_deleted['id']."</td>");
+		print("</tr>");
+	}
 
 	print("</table>");
 
