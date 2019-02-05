@@ -38,7 +38,7 @@
 
 	//フォームに入力された文字列「$search_keyword」を使って検索
 	//$sql = 'SELECT * FROM user where id = "'.$search_keyword.'"';
-	$sql = 'SELECT * FROM user where id < "'.$search_keyword.'"';
+	$sql = 'SELECT * FROM user where prefecture = "'.$search_keyword.'"';
 
 	$stmt = $dbh->query($sql);
 
