@@ -77,7 +77,7 @@
 		print("<td>".$row['postal_code']."</td>");
 		print("<td>".$row['prefecture']."</td>");
 		print("<td>".$row['phone']."</td>");
-		print("<td>".$is_deleted['id']."</td>");
+		print("<td>".$row['is_deleted']."</td>");
 		print("</tr>");
 	}
 
