@@ -1,0 +1,160 @@
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>AJAX sample</title>
+
+  <STYLE TYPE="text/css">
+    table {
+      border: solid 1px #708090;
+      border-collapse: collapse;
+    }
+
+    th {
+      border: solid 1px #708090;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    td {
+      border: solid 1px #708090;
+    }
+
+    .alert {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      width: 500px;
+    }
+
+    .alert-info {
+      color: #31708f;
+      background-color: #d9edf7;
+      border-color: #bce8f1;
+    }
+
+    .alert-warning {
+      color: #8a6d3b;
+      background-color: #fcf8e3;
+      border-color: #faebcc;
+    }
+
+    .alert-danger {
+      color: #a94442;
+      background-color: #f2dede;
+      border-color: #ebccd1;
+    }
+  </STYLE>
+
+  <script type="text/javascript" src="xmlhttp.js"></script>
+  <script type="text/javascript">
+    findText = findTextOld = "";
+
+    function loadXmlFile(fName) {
+      httpObj = createXMLHttpRequest(displayData);
+      if (httpObj) {
+        httpObj.open("GET", fName, true);
+        httpObj.send(null);
+      }
+    }
+
+    function displayData() {
+      // readyState : 0 準備段階(まだ通信は行われていない状態), 1 準備完了(通信を行う準備が完了している状態), 2 通信開始(サーバーと通信が始まっている状態), 3 受信中(サーバーから目的のデータを取得している状態), 4 通信完了(データを取得して通信が終了している状態)
+      // status : 200 成功(特に問題なく通信が成功した状態), 401 エラー(認証が必要なため通信できない状態), 403 エラー(アクセスが禁止されていて通信できない状態), 404 エラー(情報が存在しないために通信できない状態), 500 エラー(サーバー側の不具合で通信できない状態), 503 エラー(サーバーに負荷がかかって通信できない状態)
+      if (httpObj.readyState == 4 && httpObj.status == 200) {
+        xmlData = httpObj.responseXML;
+        $("result").innerHTML = parseXmlData(httpObj.responseText);
+        $("alert-info").innerHTML = "";
+        $("alert-danger").innerHTML = "";
+      } else {
+        $("result").innerHTML = "";
+        $("alert-info").innerHTML = "Loading ...";
+        $("alert-danger").innerHTML = "";
+      }
+    }
+
+    function parseXmlData(xmlData) {
+      $("result").innerHTML = xmlData;
+      // id, name, gender, birthday, age, postal_code, prefecture, phone
+      idListTags = document.getElementsByTagName("id");
+      nameListTags = document.getElementsByTagName("name");
+      genderListTags = document.getElementsByTagName("gender");
+      birthdayListTags = document.getElementsByTagName("birthday");
+      ageListTags = document.getElementsByTagName("age");
+      postal_codeListTags = document.getElementsByTagName("postal_code");
+      prefectureListTags = document.getElementsByTagName("prefecture");
+      phoneListTags = document.getElementsByTagName("phone");
+      idLen = idListTags.length;
+
+      /* resultText = "<table class='table1'>"; */
+      resultText = "<table class='table1'>";
+      resultText += "<tr>";
+      resultText += "<th>id</th>";
+      resultText += "<th>name</th>";
+      resultText += "<th>gender</th>";
+      resultText += "<th>birthday</th>";
+      resultText += "<th>age</th>";
+      resultText += "<th>postal_code</th>";
+      resultText += "<th>prefecture</th>";
+      resultText += "<th>phone</th>";
+      resultText += "</tr>";
+
+      for (i = 0; i < idLen; i++) {
+        id = idListTags[i].childNodes[0].nodeValue;
+        name = nameListTags[i].childNodes[0].nodeValue;
+        gender = genderListTags[i].childNodes[0].nodeValue;
+        birthday = birthdayListTags[i].childNodes[0].nodeValue;
+        age = ageListTags[i].childNodes[0].nodeValue;
+        postal_code = postal_codeListTags[i].childNodes[0].nodeValue;
+        prefecture = prefectureListTags[i].childNodes[0].nodeValue;
+        phone = phoneListTags[i].childNodes[0].nodeValue;
+
+        str = name.match(findText);
+        if (str) {
+          resultText += "<tr>";
+          resultText += "<td>" + id + "</td>";
+          resultText += "<td>" + name + "</td>";
+          resultText += "<td>" + gender + "</td>";
+          resultText += "<td>" + birthday + "</td>";
+          resultText += "<td>" + age + "</td>";
+          resultText += "<td>" + postal_code + "</td>";
+          resultText += "<td>" + prefecture + "</td>";
+          resultText += "<td>" + phone + "</td>";
+          resultText += "</tr>";
+        }
+      }
+      resultText += "</table>";
+      return resultText;
+    }
+
+    function inputCheck() {
+      findText = document.ajaxForm.requestText.value;
+      if (findText == "") {
+        /* $("result").innerHTML = "Please input search name or keyword."; */
+        $("result").innerHTML = "";
+        $("alert-danger").innerHTML = "Please input search name or keyword.";
+      } else if (findText != findTextOld) {
+        $("alert-danger").innerHTML = "";
+        str_search = "./backend.php?name=" + findText;
+        loadXmlFile(str_search);
+        findTextOld = findText;
+      }
+      setTimeout("inputCheck()", 1000); // 1秒＝1000ミリ秒毎に実行
+    }
+
+    window.onload = inputCheck;
+  </script>
+</head>
+
+<body>
+  <p>検索したい名前か，名前の一部を入力してください．</p>
+  <form name="ajaxForm" onSubmit="return false">
+    <input type="text" value="鈴木" name="requestText" />
+  </form>
+  <div id="alert-danger" class="alert alert-danger" role="alert"></div>
+  <div id="alert-info" class="alert alert-info" role="alert"></div>
+  <div id="result"></div>
+</body>
+
+</html>
