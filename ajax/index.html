@@ -19,32 +19,6 @@
     td {
       border: solid 1px #708090;
     }
-
-    .alert {
-      padding: 15px;
-      margin-bottom: 20px;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      width: 500px;
-    }
-
-    .alert-info {
-      color: #31708f;
-      background-color: #d9edf7;
-      border-color: #bce8f1;
-    }
-
-    .alert-warning {
-      color: #8a6d3b;
-      background-color: #fcf8e3;
-      border-color: #faebcc;
-    }
-
-    .alert-danger {
-      color: #a94442;
-      background-color: #f2dede;
-      border-color: #ebccd1;
-    }
   </STYLE>
 
   <script type="text/javascript" src="xmlhttp.js"></script>
@@ -65,12 +39,10 @@
       if (httpObj.readyState == 4 && httpObj.status == 200) {
         xmlData = httpObj.responseXML;
         $("result").innerHTML = parseXmlData(httpObj.responseText);
-        $("alert-info").innerHTML = "";
-        $("alert-danger").innerHTML = "";
+        $("alert").innerHTML = "";
       } else {
         $("result").innerHTML = "";
-        $("alert-info").innerHTML = "Loading ...";
-        $("alert-danger").innerHTML = "";
+        $("alert").innerHTML = "Loading ...";
       }
     }
 
@@ -87,8 +59,7 @@
       phoneListTags = document.getElementsByTagName("phone");
       idLen = idListTags.length;
 
-      /* resultText = "<table class='table1'>"; */
-      resultText = "<table class='table1'>";
+      resultText = "<table>";
       resultText += "<tr>";
       resultText += "<th>id</th>";
       resultText += "<th>name</th>";
@@ -132,10 +103,10 @@
       findText = document.ajaxForm.requestText.value;
       if (findText == "") {
         /* $("result").innerHTML = "Please input search name or keyword."; */
+        $("alert").innerHTML = "Please input search name or keyword.";
         $("result").innerHTML = "";
-        $("alert-danger").innerHTML = "Please input search name or keyword.";
       } else if (findText != findTextOld) {
-        $("alert-danger").innerHTML = "";
+        $("alert").innerHTML = "";
         str_search = "./backend.php?name=" + findText;
         loadXmlFile(str_search);
         findTextOld = findText;
@@ -152,8 +123,7 @@
   <form name="ajaxForm" onSubmit="return false">
     <input type="text" value="鈴木" name="requestText" />
   </form>
-  <div id="alert-danger" class="alert alert-danger" role="alert"></div>
-  <div id="alert-info" class="alert alert-info" role="alert"></div>
+  <div id="alert"></div>
   <div id="result"></div>
 </body>
 
