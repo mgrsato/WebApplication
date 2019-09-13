@@ -3,7 +3,7 @@
 
     $no_login_url = "index.php";
 
-    if(!isset($_SESSION["user_name"])) {
+    if(!isset($_SESSION["entered_user_name"])) {
         header("Location: {$no_login_url}");
         exit;
     }

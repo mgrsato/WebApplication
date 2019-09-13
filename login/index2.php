@@ -41,12 +41,39 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <title>LOGIN</title>
+    <STYLE TYPE="text/css">
+    table {
+    border: solid 1px #708090;
+    border-collapse: collapse;
+    width: 800px;
+    }
+    th {
+    border: solid 1px #708090;
+    text-align: center;
+    font-weight: bold;
+    }
+    td {
+    border: solid 1px #708090;
+    }
+    .alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    width: 800px;
+    height: 20px;
+
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    }
+    </STYLE>
 </head>
 
 <body>
-    <form action="index.php" method="POST">
-        <p>ユーザー名（メールアドレス）：<input type="text" name="entered_user_name" value="bn0Ws@sample.jp"></p>
-        <p>パスワード：<input type="password" name="entered_password" value="fQ9zi64a"></p>
+    <form action="index2.php" method="POST">
+        <p>ユーザー名（メールアドレス）：<input type="text" name="entered_user_name" value=""></p>
+        <p>パスワード：<input type="password" name="entered_password" value=""></p>
         <input type="submit" name="login" value="ログイン">
     </form>
 
@@ -56,11 +83,13 @@
     <p>Jnt40P94@sample.org, kwJc5j5i</p>
     <br>
 
-<?php
-    if($error_message) {
-        echo "<p>※error_message = " . $error_message . "</p>";
-    }
-?>
+    <div id="alert" class="alert">
+        <?php
+            if($error_message) {
+                echo "「" . $error_message . "」";
+            }
+        ?>
+    </div>
 </body>
 
 </html>
