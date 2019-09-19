@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>map_1</title>
+  <style>
+    #mapStage {
+      height: 600px;
+      width: 100%;
+    }
+  </style>
+
+  <!-- Rewrite YOUR_API_KEY to API key associated with your project. Go to https://developers.google.com/maps/documentation/javascript/get-api-key -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+  <script>
+    function initMap() {
+      var centerOfMap = {
+        lat: 35.465521,
+        lng: 139.615434
+      };
+      var map1 = new google.maps.Map(document.getElementById('mapStage'), {
+        zoom: 16,
+        center: centerOfMap
+      });
+
+      //座標の調べ方
+      //店名をgoogle検索　　地図　　調べている店を中心に拡大　　店の上で右クリック　　「この場所について」選択　　画面下に店名住所座標が表示される
+      var latlng1 = { lat: 35.458880, lng: 139.607262 }; //セブンイレブン 横浜浅間町店
+      var latlng2 = { lat: 35.464352, lng: 139.613038 }; //セブンイレブン 横浜浅間町１丁目店
+      var latlng3 = { lat: 35.465976, lng: 139.612381 }; //セブンイレブン 横浜浅間下店
+      var latlng4 = { lat: 35.466907, lng: 139.615903 }; //セブンイレブン 横浜北幸店
+      var latlng5 = { lat: 35.466310, lng: 139.615306 }; //セブンイレブン 横浜北幸２丁目店
+      var latlng6 = { lat: 35.466342, lng: 139.617997 }; //セブンイレブン 横浜北幸中央店
+      var latlng7 = { lat: 35.467740, lng: 139.617796 }; //セブンイレブン 横浜ＳＴビル店
+      var latlng8 = { lat: 35.464508, lng: 139.616281 }; //セブンイレブン 横浜南幸２丁目店
+      var latlng9 = { lat: 35.462268, lng: 139.609640 }; //ファミリーマート 横浜浅間町店
+      var latlng10 = { lat: 35.463849, lng: 139.614515 }; //ファミリーマート 横浜岡野一丁目店
+      var latlng11 = { lat: 35.464559, lng: 139.614380 }; //ファミリーマート 佐野北幸二丁目店
+      var latlng12 = { lat: 35.468830, lng: 139.617336 }; //ファミリーマート 横浜鶴屋町店
+      var latlng13 = { lat: 35.463504, lng: 139.617671 }; //ファミリーマート 横浜南幸二丁目店
+      var latlng14 = { lat: 35.466061, lng: 139.619605 }; //ファミリーマート はまりん横浜駅店
+      var latlng15 = { lat: 35.464839, lng: 139.620264 }; //ファミリーマート はまりん横浜駅ミニ店
+      var latlng16 = { lat: 35.465755, lng: 139.611332 }; //ローソン 横浜浅間下店
+      var latlng17 = { lat: 35.461863, lng: 139.616912 }; //ローソン 横浜岡野町店
+      var latlng18 = { lat: 35.463500, lng: 139.616139 }; //ローソン ヨコハマパルナード店
+      var latlng19 = { lat: 35.466671, lng: 139.622241 }; //ローソン +toks横浜駅店
+      var latlng20 = { lat: 35.466200, lng: 139.618621 }; //ローソン 横浜北幸一丁目店
+      var latlng21 = { lat: 35.465163, lng: 139.617908 }; //ローソン 横浜南幸二丁目店
+      var latlng22 = { lat: 35.467314, lng: 139.616819 }; //ローソン 北幸二丁目店
+      var latlng23 = { lat: 35.468856, lng: 139.617515 }; //ローソン 横浜鶴屋町店
+      var latlng24 = { lat: 35.462152, lng: 139.609118 }; //ローソンストア100 横浜浅間町店
+      var latlng25 = { lat: 35.466739, lng: 139.614622 }; //デイリーヤマザキ 横浜北幸店
+      var latlng26 = { lat: 35.463336, lng: 139.618217 }; //デイリーヤマザキ 横浜南幸2丁目店
+      var latlng27 = { lat: 35.464664, lng: 139.619437 }; //デイリーヤマザキ 横浜駅前店
+      var latlng28 = { lat: 35.467106, lng: 139.619623 }; //デイリーヤマザキ 横浜天理ビル店
+      var latlng29 = { lat: 35.465627, lng: 139.616958 }; //サンクス 横浜駅西口店
+      var latlng30 = { lat: 35.467075, lng: 139.618841 }; //サンクス 横浜北幸店
+      var marker = new google.maps.Marker({ position: latlng1, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng2, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng3, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng4, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng5, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng6, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng7, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng8, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng9, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng10, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng11, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng12, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng13, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng14, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng15, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng16, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng17, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng18, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng19, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng20, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng21, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng22, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng23, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng24, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng25, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng26, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng27, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng28, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng29, map: map1 });
+      var marker = new google.maps.Marker({ position: latlng30, map: map1 });
+
+    }
+  </script>
+</head>
+
+<body>
+  <h3>コンビニ</h3>
+  <div id="mapStage"></div>
+</body>
+
+</html>
