@@ -1,41 +1,41 @@
 <?php
-$db_user  = "dbuser"; //database user name
-$db_password = "dbuserpass"; //database password
-$db_name = "acy_db"; //database name
-$db_table_name = "user"; //database table name
-$db_host  = "localhost";
+	$host = 'localhost';
+	$dbname = 'acy_db';
+	$charset = 'utf8';
+	$user = 'dbuser';
+	$password = 'dbuserpass';
 
-// create xml
-header('Content-type: text/xml; charset=utf-8');
-echo '<?xml version="1.0"?>';
-echo '<list>';
+	$dsn = 'mysql:host='.$host.';dbname='.$dbname.';charset='.$charset;
+	$dbh = new PDO($dsn, $user, $password);
 
-$name = null;
-
-if (isset($_GET['name'])) {
-    $name = $_GET['name'];
-
-    $con = mysql_connect($db_host, $db_user, $db_password) or die("Error!");
-    mysql_select_db($db_name, $con) or die("DB is not exist");
-    $strsql = "SET CHARACTER SET UTF8";
-    mysql_query($strsql, $con);
-    $strsql = "SELECT id, name, gender, birthday, age, postal_code, prefecture, phone FROM " . $db_table_name . " WHERE name LIKE '%" . $name . "%';";
-    $res = mysql_query($strsql, $con);
-
-    while ($item = mysql_fetch_array($res)) {
-        print "<user>";
-        print "<id>" . $item[0] . "</id>";
-        print "<name>" . $item[1] . "</name>";
-        print "<gender>" . $item[2] . "</gender>";
-        print "<birthday>" . $item[3] . "</birthday>";
-        print "<age>" . $item[4] . "</age>";
-        print "<postal_code>" . $item[5] . "</postal_code>";
-        print "<prefecture>" . $item[6] . "</prefecture>";
-        print "<phone>" . $item[7] . "</phone>";
-        print "</user>";
+    $name = "";
+    if(isset($_GET['name'])) {
+        $name = htmlspecialchars($_GET['name']);
     }
-    mysql_close($con);
-}
 
-echo '</list>';
+	// $sql = 'SELECT * FROM user WHERE name LIKE "%'.$name.'%";';
+	$sql = "SELECT * FROM user WHERE name LIKE '%".$name."%';";
+	$stmt = $dbh->query($sql);
+
+    // create xml
+    header('Content-type: text/xml; charset=utf-8');
+    print "<?xml version=1.0?>";
+    print "<list>";
+
+    foreach ($stmt as $row) {
+        print "<user>";
+        print "<id>".$row['id']."</id>";
+        print "<email>".$row['email']."</email>";
+        print "<password>".$row['password']."</password>";
+        print "<last_login>".$row['last_login']."</last_login>";
+        print "<name>".$row['name']."</name>";
+        print "<gender>".$row['gender']."</gender>";
+        print "<birthday>".$row['birthday']."</birthday>";
+        print "<age>".$row['age']."</age>";
+        print "<postal_code>".$row['postal_code']."</postal_code>";
+        print "<prefecture>".$row['prefecture']."</prefecture>";
+        print "<phone>".$row['phone']."</phone>";
+    }
+
+    print "</list>";
 ?>
