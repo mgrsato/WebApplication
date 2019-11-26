@@ -13,9 +13,9 @@
         $name = htmlspecialchars($_GET['name']);
     }
 
-	// $sql = 'SELECT * FROM user WHERE name LIKE "%'.$name.'%";';
-	$sql = "SELECT * FROM user WHERE name LIKE '%".$name."%';";
-	$stmt = $dbh->query($sql);
+    //$sql = 'SELECT * FROM user WHERE name LIKE "%'.$name.'%";';
+    $sql = "SELECT * FROM user WHERE name LIKE '%".$name."%';";
+    $stmt = $dbh->query($sql);
 
     // create xml
     header('Content-type: text/xml; charset=utf-8');
