@@ -1,8 +1,7 @@
 <!-- Dependency Analysis -->
 
 <?php
-// $appid = '<あなたのアプリケーションID>';
-$appid = 'dj00aiZpPVF6dUlRdUdpTHZIVSZzPWNvbnN1bWVyc2VjcmV0Jng9MTE-';
+$appid = '<あなたのアプリケーションID>';
 
 // $str = '横浜市西区の天気は雨です';
 $str = "";
