@@ -49,7 +49,8 @@
 		$array = json_decode(json_encode($xmlObject), true);
 		// print $array['head']['title'];
 		// $title = $domDocument->getElementsByTagName('title')->item(0)->nodeValue;
-		$text = $domDocument->getElementById('tpcNews')->nodeValue;
+		// $text = $domDocument->getElementById('tpcNews')->nodeValue;
+		$text = $array['head']['meta'][5]["@attributes"][content];
 		print '<p>' . $text . '<A HREF="' . $url_2 . '">[LINK]</A></p>';
 
 		// $url_3 = 'https://jlp.yahooapis.jp/DAService/V1/parse?appid=' . $appid . '&sentence=' . urlencode($str);
