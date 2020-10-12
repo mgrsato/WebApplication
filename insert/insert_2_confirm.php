@@ -22,10 +22,10 @@
 	<H1>２. INSERT実行確認</H1>
 <?php
 	$host = 'localhost';
-	$dbname = 'k_sato';
+	$dbname = 'acy_db';
 	$charset = 'utf8';
-	$user = 'k.sato';
-	$password = 'AAAA';
+	$user = 'dbuser';
+	$password = 'dbpass';
 
 	$dsn = 'mysql:host='.$host.';dbname='.$dbname.';charset='.$charset;
 	$dbh = new PDO($dsn, $user, $password);
