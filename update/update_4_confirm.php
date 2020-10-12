@@ -25,7 +25,7 @@
 	$dbname = 'acy_db';
 	$charset = 'utf8';
 	$user = 'dbuser';
-	$password = 'dbuserpass';
+	$password = 'dbpass';
 
 	$dsn = 'mysql:host='.$host.';dbname='.$dbname.';charset='.$charset;
 	$dbh = new PDO($dsn, $user, $password);
@@ -83,14 +83,15 @@
 	//フォームに入力された文字列を使って更新
 	//$sql = 'SELECT * FROM user where id = "'.$search_keyword.'"';
 	//$sql = 'UPDATE user SET email='.$email.', password='.$password.', last_login='.$last_login.', name='.$name.', gender='.$gender.', birthday='.$birthday.', age='.$age.', postal_code='.$postal_code.', prefecture='.$prefecture.', phone='.$phone.', is_deleted='.$is_deleted.' WHERE id='.$id.';';
-	$sql = 'UPDATE user SET email="'.$email.'", password="'.$password.'", last_login="'.$last_login.'", name="'.$name.'", gender="'.$gender.'", birthday="'.$birthday.'", age="'.$age.'", postal_code="'.$postal_code.'", prefecture="'.$prefecture.'", phone="'.$phone.'", is_deleted="'.$is_deleted.'" WHERE id="'.$id.'";';
+	$sql = 'UPDATE user SET email="'.$email.'", password="'.$password.'", last_login="'.$last_login.'", name="'.$name.'", gender="'.$gender.'", birthday="'.$birthday.'", age="'.$age.'", postal_code="'.$postal_code.'", prefecture="'.$prefecture.'", phone="'.$phone.'" WHERE id="'.$id.'";';
 
 	$stmt = $dbh->query($sql);
-        $dbh = null;
+	$dbh = null;
 
 	print("更新が完了しました");
+	print($sql);
+	
 	print("<p>");
-
 	print("<table>");
 
 	print("<tr>");
@@ -130,3 +131,4 @@
 ?>
 </BODY>
 </HTML>
+
