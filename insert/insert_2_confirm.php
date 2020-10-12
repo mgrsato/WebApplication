@@ -22,10 +22,10 @@
 	<H1>２. INSERT実行確認</H1>
 <?php
 	$host = 'localhost';
-	$dbname = 'acy_db';
+	$dbname = 'k_sato';
 	$charset = 'utf8';
-	$user = 'dbuser';
-	$password = 'dbuserpass';
+	$user = 'k.sato';
+	$password = 'AAAA';
 
 	$dsn = 'mysql:host='.$host.';dbname='.$dbname.';charset='.$charset;
 	$dbh = new PDO($dsn, $user, $password);
@@ -43,45 +43,46 @@
     	if(isset($_GET['password'])) {
         	$password = htmlspecialchars($_GET['password']);
     	}
-    	$last_login = "";
-    	if(isset($_GET['last_login'])) {
-        	$last_login = htmlspecialchars($_GET['last_login']);
-    	}
+    	// $last_login = "";
+    	// if(isset($_GET['last_login'])) {
+        // 	$last_login = htmlspecialchars($_GET['last_login']);
+    	// }
     	$name = "";
     	if(isset($_GET['name'])) {
         	$name = htmlspecialchars($_GET['name']);
     	}
-    	$gender = "";
-    	if(isset($_GET['gender'])) {
-        	$gender = htmlspecialchars($_GET['gender']);
-    	}
-    	$birthday = "";
-    	if(isset($_GET['birthday'])) {
-        	$birthday = htmlspecialchars($_GET['birthday']);
-    	}
-    	$age = "";
-    	if(isset($_GET['age'])) {
-        	$age = htmlspecialchars($_GET['age']);
-    	}
-    	$postal_code = "";
-    	if(isset($_GET['postal_code'])) {
-        	$postal_code = htmlspecialchars($_GET['postal_code']);
-    	}
-    	$prefecture = "";
-    	if(isset($_GET['prefecture'])) {
-        	$prefecture = htmlspecialchars($_GET['prefecture']);
-    	}
-    	$phone = "";
-    	if(isset($_GET['phone'])) {
-        	$phone = htmlspecialchars($_GET['phone']);
-    	}
-    	$is_deleted = "";
-    	if(isset($_GET['is_deleted'])) {
-        	$is_deleted = htmlspecialchars($_GET['is_deleted']);
-    	}
+    	// $gender = "";
+    	// if(isset($_GET['gender'])) {
+        // 	$gender = htmlspecialchars($_GET['gender']);
+    	// }
+    	// $birthday = "";
+    	// if(isset($_GET['birthday'])) {
+        // 	$birthday = htmlspecialchars($_GET['birthday']);
+    	// }
+    	// $age = "";
+    	// if(isset($_GET['age'])) {
+        // 	$age = htmlspecialchars($_GET['age']);
+    	// }
+    	// $postal_code = "";
+    	// if(isset($_GET['postal_code'])) {
+        // 	$postal_code = htmlspecialchars($_GET['postal_code']);
+    	// }
+    	// $prefecture = "";
+    	// if(isset($_GET['prefecture'])) {
+        // 	$prefecture = htmlspecialchars($_GET['prefecture']);
+    	// }
+    	// $phone = "";
+    	// if(isset($_GET['phone'])) {
+        // 	$phone = htmlspecialchars($_GET['phone']);
+    	// }
+    	// $is_deleted = "";
+    	// if(isset($_GET['is_deleted'])) {
+        // 	$is_deleted = htmlspecialchars($_GET['is_deleted']);
+    	// }
 
 	//フォームに入力された文字列を使って追加
-	$sql = 'INSERT INTO user (email, password, last_login, name, gender, birthday, age, postal_code, prefecture, phone, is_deleted) VALUES ("'.$email.'", "'.$password.'", "'.$last_login.'", "'.$name.'", "'.$gender.'", "'.$birthday.'", "'.$age.'", "'.$postal_code.'", "'.$prefecture.'", "'.$phone.'", "'.$is_deleted.'");';
+	// $sql = 'INSERT INTO user (email, password, last_login, name, gender, birthday, age, postal_code, prefecture, phone, is_deleted) VALUES ("'.$email.'", "'.$password.'", "'.$last_login.'", "'.$name.'", "'.$gender.'", "'.$birthday.'", "'.$age.'", "'.$postal_code.'", "'.$prefecture.'", "'.$phone.'", "'.$is_deleted.'");';
+	$sql = 'INSERT INTO user (email, password, name) VALUES ("'.$email.'", "'.$password.'", "'.$name.'");';
 
 	$stmt = $dbh->query($sql);
 
@@ -89,9 +90,9 @@
 	print("<p>");
 
 	//追加されたデータの表示
-	$sql = 'SELECT * FROM user where id > 100000';
+	$sql = 'SELECT * FROM user ORDER BY id DESC LIMIT 10';
 	$stmt = $dbh->query($sql);
-        $dbh = null;
+	$dbh = null;
 
 	print("<table>");
 
@@ -135,3 +136,4 @@
 ?>
 </BODY>
 </HTML>
+
