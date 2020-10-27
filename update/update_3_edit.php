@@ -48,7 +48,7 @@
 	print("<th>id</th>");
 	print("<th>emai</th>");
 	print("<th>password</th>");
-	print("<th>last_login</th>");
+//	print("<th>last_login</th>");
 	print("<th>name</th>");
 	print("<th>gender</th>");
 	print("<th>birthday</th>");
@@ -69,7 +69,7 @@
 		//「id」以外は変更可能とするため，変更可能なテキストとして表示
 		print("<td><input type='text' name='email' value='".$row['email']."'/></td>");
 		print("<td><input type='text' name='password' value='".$row['password']."'/></td>");
-		print("<td><input type='text' name='last_login' value='".$row['last_login']."'/></td>");
+//		print("<td><input type='text' name='last_login' value='".$row['last_login']."'/></td>");
 		print("<td><input type='text' name='name' value='".$row['name']."'/></td>");
 		print("<td><input type='text' name='gender' value='".$row['gender']."'/></td>");
 		print("<td><input type='text' name='birthday' value='".$row['birthday']."'/></td>");
@@ -90,3 +90,4 @@
 ?>
 </BODY>
 </HTML>
+

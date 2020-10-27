@@ -25,7 +25,7 @@
 	$dbname = 'acy_db';
 	$charset = 'utf8';
 	$user = 'dbuser';
-	$password = 'dbpass';
+	$password = 'dbuserpass';
 
 	$dsn = 'mysql:host='.$host.';dbname='.$dbname.';charset='.$charset;
 	$dbh = new PDO($dsn, $user, $password);
@@ -43,10 +43,10 @@
     	if(isset($_GET['password'])) {
         	$password = htmlspecialchars($_GET['password']);
     	}
-    	$last_login = "";
-    	if(isset($_GET['last_login'])) {
-        	$last_login = htmlspecialchars($_GET['last_login']);
-    	}
+//    	$last_login = "";
+//    	if(isset($_GET['last_login'])) {
+//        	$last_login = htmlspecialchars($_GET['last_login']);
+//    	}
     	$name = "";
     	if(isset($_GET['name'])) {
         	$name = htmlspecialchars($_GET['name']);
@@ -83,7 +83,7 @@
 	//フォームに入力された文字列を使って更新
 	//$sql = 'SELECT * FROM user where id = "'.$search_keyword.'"';
 	//$sql = 'UPDATE user SET email='.$email.', password='.$password.', last_login='.$last_login.', name='.$name.', gender='.$gender.', birthday='.$birthday.', age='.$age.', postal_code='.$postal_code.', prefecture='.$prefecture.', phone='.$phone.', is_deleted='.$is_deleted.' WHERE id='.$id.';';
-	$sql = 'UPDATE user SET email="'.$email.'", password="'.$password.'", last_login="'.$last_login.'", name="'.$name.'", gender="'.$gender.'", birthday="'.$birthday.'", age="'.$age.'", postal_code="'.$postal_code.'", prefecture="'.$prefecture.'", phone="'.$phone.'" WHERE id="'.$id.'";';
+	$sql = 'UPDATE user SET email="'.$email.'", password="'.$password.'", name="'.$name.'", gender="'.$gender.'", birthday="'.$birthday.'", age="'.$age.'", postal_code="'.$postal_code.'", prefecture="'.$prefecture.'", phone="'.$phone.'" WHERE id="'.$id.'";';
 
 	$stmt = $dbh->query($sql);
 	$dbh = null;
@@ -98,7 +98,7 @@
 	print("<th>id</th>");
 	print("<th>emai</th>");
 	print("<th>password</th>");
-	print("<th>last_login</th>");
+//	print("<th>last_login</th>");
 	print("<th>name</th>");
 	print("<th>gender</th>");
 	print("<th>birthday</th>");
@@ -113,7 +113,7 @@
 	print("<td>".$id."</td>");
 	print("<td>".$email."</td>");
 	print("<td>".$password."</td>");
-	print("<td>".$last_login."</td>");
+//	print("<td>".$last_login."</td>");
 	print("<td>".$name."</td>");
 	print("<td>".$gender."</td>");
 	print("<td>".$birthday."</td>");
