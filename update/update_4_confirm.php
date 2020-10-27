@@ -89,7 +89,9 @@
 	$dbh = null;
 
 	print("更新が完了しました");
+	print("<p>");
 	print($sql);
+	print("</p>");
 	
 	print("<p>");
 	print("<table>");
